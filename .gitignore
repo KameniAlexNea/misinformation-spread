@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 twitter/api.json
 *.ipynb
+*.csv
