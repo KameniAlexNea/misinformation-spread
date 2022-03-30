@@ -11,7 +11,7 @@ optuna
 ktrain
 tqdm
 sentence-transformers
-tensorflow==2.7.1
+tensorflow
 tensorflow-recommenders
 torch
 torchtext
