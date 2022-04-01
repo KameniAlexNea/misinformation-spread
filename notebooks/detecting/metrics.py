@@ -186,32 +186,48 @@ def get_performance_metrics(y, pred, class_labels, tp=true_positives,
     df = pd.DataFrame(columns=columns)
     for i in range(len(class_labels)):
         df.loc[i] = [""] + [0] * (len(columns) - 1)
-        df.loc[i][0] = class_labels[i]
-        df.loc[i][1] = round(tp(y[:, i], pred[:, i], thresholds[i]),
+        line = []
+        line.append(class_labels[i])
+        a = round(tp(y[:, i], pred[:, i], thresholds[i]),
                              3) if tp is not None else "Not Defined"
-        df.loc[i][2] = round(tn(y[:, i], pred[:, i], thresholds[i]),
+        line.append(a)
+        a = round(tn(y[:, i], pred[:, i], thresholds[i]),
                              3) if tn is not None else "Not Defined"
-        df.loc[i][3] = round(fp(y[:, i], pred[:, i], thresholds[i]),
+        line.append(a)
+        a = round(fp(y[:, i], pred[:, i], thresholds[i]),
                              3) if fp is not None else "Not Defined"
-        df.loc[i][4] = round(fn(y[:, i], pred[:, i], thresholds[i]),
+        line.append(a)
+        a = round(fn(y[:, i], pred[:, i], thresholds[i]),
                              3) if fn is not None else "Not Defined"
-        df.loc[i][5] = round(acc(y[:, i], pred[:, i], thresholds[i]),
+        line.append(a)
+        a = round(acc(y[:, i], pred[:, i], thresholds[i]),
                              3) if acc is not None else "Not Defined"
-        df.loc[i][6] = round(prevalence(y[:, i]),
+        line.append(a)
+        a = round(prevalence(y[:, i]),
                              3) if prevalence is not None else "Not Defined"
-        df.loc[i][7] = round(sens(y[:, i], pred[:, i], thresholds[i]),
+        line.append(a)
+        a = round(sens(y[:, i], pred[:, i], thresholds[i]),
                              3) if sens is not None else "Not Defined"
-        df.loc[i][8] = round(spec(y[:, i], pred[:, i], thresholds[i]),
+        line.append(a)
+        a = round(spec(y[:, i], pred[:, i], thresholds[i]),
                              3) if spec is not None else "Not Defined"
-        df.loc[i][9] = round(ppv(y[:, i], pred[:, i], thresholds[i]),
+        line.append(a)
+        a = round(ppv(y[:, i], pred[:, i], thresholds[i]),
                              3) if ppv is not None else "Not Defined"
-        df.loc[i][10] = round(npv(y[:, i], pred[:, i], thresholds[i]),
+        line.append(a)
+        a = round(npv(y[:, i], pred[:, i], thresholds[i]),
                               3) if npv is not None else "Not Defined"
-        df.loc[i][11] = round(auc(y[:, i], pred[:, i]),
+        line.append(a)
+        a = round(auc(y[:, i], pred[:, i]),
                               3) if auc is not None else "Not Defined"
-        df.loc[i][12] = round(f1(y[:, i], pred[:, i] > thresholds[i]),
+        line.append(a)
+        a = round(f1(y[:, i], pred[:, i] > thresholds[i]),
                               3) if f1 is not None else "Not Defined"
-        df.loc[i][13] = round(thresholds[i], 3)
+        line.append(a)
+        a = round(thresholds[i], 3)
+        line.append(a)
+        df.loc[i] = line
+
 
     df = df.set_index("")
     return df

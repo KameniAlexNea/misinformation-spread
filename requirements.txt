@@ -8,10 +8,12 @@ nltk
 sklearn
 xgboost
 optuna
-ktrain
-tqdm
-sentence-transformers
 tensorflow
+keras
+tensorflow-gpu
 tensorflow-recommenders
 torch
 torchtext
+ktrain
+tqdm
+sentence-transformers
